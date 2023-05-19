@@ -1,0 +1,62 @@
+<div class="sticky-arrow">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25">
+    <path d="M15.207 5.356h-1.414l-7 7 7 7h1.414l-7-7 7-7Z"></path>
+</svg>
+</div>
+<style>
+    .sticky-arrow {
+        width: 48px;
+        height: 48px;
+        background-color: black;
+        border-radius: 50%;
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 400;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        transition: all ease-in-out 0.1s;
+    }
+
+    .sticky-arrow::after {
+        width: 40px;
+        height: 40px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+    .sticky-arrow.visible {
+        opacity: 1;
+    }
+
+    .sticky-arrow svg {
+        fill: #fff;
+        transform: rotate(90deg);
+    }
+
+    @media (min-width:768px) {
+        .sticky-arrow {
+            display: none;
+        }
+    }
+</style>
+<script>
+    window.addEventListener('load', () => {
+        const stickyArrow = document.querySelector('.sticky-arrow');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                stickyArrow.classList.add('visible');
+            } else {
+                stickyArrow.classList.remove('visible');
+            }
+        })
+
+        stickyArrow.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+    })
+</script>
